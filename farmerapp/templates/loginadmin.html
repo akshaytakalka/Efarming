@@ -1,0 +1,89 @@
+{% extends 'navigation.html' %}
+{% block body %}
+{% load static %}
+
+{% if error == "yes" %}
+<script>
+    alert('Logged in successfully');
+    window.location = ('{% url 'admin_home' %}');
+</script>  
+{% endif %}
+{% if error == "not" %}
+<script>
+    alert('Username & Password are not matching');
+</script>
+{% endif %}
+
+<div class="container">
+    <h2 style="margin-top: 20px; text-align: center; font-family: 'Poppins', sans-serif;">Admin Login Form</h2>
+    <hr>
+    <div class="container-fluid" style="width: 70%; margin-top: 10%;">
+        <form method="post" action="">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="exampleInputEmail1" style="font-family: 'Poppins', sans-serif;">Username</label>
+                <input type="text" class="form-control custom-input" id="exampleInputEmail1" aria-describedby="emailHelp" name="uname" placeholder="Enter Username">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputPassword1" style="font-family: 'Poppins', sans-serif;">Password</label>
+                <input type="password" class="form-control custom-input" id="exampleInputPassword1" placeholder="Password" name="pwd">
+            </div>
+            <button type="submit" class="btn btn-primary custom-btn">Submit</button>
+        </form>
+    </div>
+</div>
+
+<style>
+    /* Styling for form inputs */
+    .custom-input {
+        padding: 15px;
+        font-size: 16px;
+        border-radius: 10px;
+        border: 1px solid #ddd;
+        box-shadow: inset 3px 3px 5px rgba(0,0,0,0.1), inset -3px -3px 5px rgba(255,255,255,0.7);
+        transition: box-shadow 0.3s ease;
+    }
+
+    .custom-input:focus {
+        outline: none;
+        box-shadow: inset 5px 5px 10px rgba(0,0,0,0.15), inset -5px -5px 10px rgba(255,255,255,0.9);
+    }
+
+    /* Styling for button with 3D hover effect */
+    .custom-btn {
+        padding: 10px 20px;
+        font-size: 18px;
+        font-weight: 600;
+        color: #fff;
+        background-color: #007bff;
+        border: none;
+        border-radius: 8px;
+        box-shadow: 0 5px #0056b3;
+        transition: all 0.2s ease;
+        position: relative;
+    }
+
+    .custom-btn:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px #0056b3;
+    }
+
+    .custom-btn:active {
+        transform: translateY(3px);
+        box-shadow: 0 2px #0056b3;
+    }
+
+    /* Container styling for better aesthetics */
+    .container {
+        background-color: #f9f9f9;
+        padding: 40px;
+        border-radius: 15px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    }
+
+    h2 {
+        color: #333;
+    }
+</style>
+
+{% endblock %}
